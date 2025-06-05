@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Climate Matrix</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1em 0;
+            text-align: center;
+        }
+        h1 {
+            margin: 0;
+        }
+        #matrix-container {
+            margin-top: 20px;
+            overflow-x: auto; /* For responsiveness on small screens */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px solid #ccc;
+            font-size: 0.9em;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Climate Data Matrix 🌍</h1>
+    </header>
+
+    <main>
+        <section id="matrix-container">
+            <h2>Global Climate Overview</h2>
+            <p>This table presents a simplified matrix of climate data for various locations.</p>
+            <table id="climateTable">
+                <thead>
+                    <tr>
+                        <th>Location</th>
+                        <th>Avg. Temp (°C)</th>
+                        <th>Annual Rainfall (mm)</th>
+                        <th>Humidity (%)</th>
+                        <th>Primary Climate Zone</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    </tbody>
+            </table>
+        </section>
+
+        <section id="data-info" style="margin-top: 20px; padding: 15px; background-color: #e9e9e9; border-radius: 5px;">
+            <h3>About the Data</h3>
+            <p>The data presented here is for illustrative purposes only and may not represent real-time or highly accurate climate information. For precise scientific data, please consult official meteorological and climate research institutions.</p>
+            <p><strong>Possible Data Points for a Climate Matrix:</strong></p>
+            <ul>
+                <li>Temperature (Average, Min, Max, Seasonal)</li>
+                <li>Precipitation (Amount, Type, Frequency)</li>
+                <li>Humidity Levels</li>
+                <li>Wind Speed & Direction</li>
+                <li>Sunshine Hours</li>
+                <li>Sea Level Pressure</li>
+                <li>CO2 Concentration (if available)</li>
+                <li>Extreme Weather Event Frequency</li>
+                <li>Climate Projections (e.g., temperature increase by 2050)</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="currentYear"></span> Your Climate Matrix Website. Powered by Simple HTML & JavaScript.</p>
+    </footer>
+
+    <script>
+        // Sample Climate Data
+        // In a real application, you might fetch this from an API or a larger dataset.
+        const climateData = [
+            {
+                location: "New York, USA",
+                avgTemp: 12.9,
+                rainfall: 1268,
+                humidity: 63,
+                zone: "Humid Continental"
+            },
+            {
+                location: "London, UK",
+                avgTemp: 11.3,
+                rainfall: 601,
+                humidity: 79,
+                zone: "Temperate Oceanic"
+            },
+            {
+                location: "Tokyo, Japan",
+                avgTemp: 15.4,
+                rainfall: 1530,
+                humidity: 69,
+                zone: "Humid Subtropical"
+            },
+            {
+                location: "Sydney, Australia",
+                avgTemp: 17.7,
+                rainfall: 1213,
+                humidity: 65,
+                zone: "Humid Subtropical"
+            },
+            {
+                location: "Cairo, Egypt",
+                avgTemp: 21.4,
+                rainfall: 25,
+                humidity: 57,
+                zone: "Hot Desert"
+            },
+            {
+                location: "Manaus, Brazil",
+                avgTemp: 26.7,
+                rainfall: 2286,
+                humidity: 83,
+                zone: "Equatorial"
+            }
+        ];
+
+        // Function to populate the table with climate data
+        function populateClimateTable() {
+            const tableBody = document.getElementById('climateTable').getElementsByTagName('tbody')[0];
+            if (!tableBody) {
+                console.error("Table body not found!");
+                return;
+            }
+            // Clear existing rows (if any)
+            tableBody.innerHTML = "";
+
+            climateData.forEach(dataPoint => {
+                let row = tableBody.insertRow();
+
+                let cellLocation = row.insertCell();
+                cellLocation.textContent = dataPoint.location;
+
+                let cellTemp = row.insertCell();
+                cellTemp.textContent = dataPoint.avgTemp;
+
+                let cellRainfall = row.insertCell();
+                cellRainfall.textContent = dataPoint.rainfall;
+
+                let cellHumidity = row.insertCell();
+                cellHumidity.textContent = dataPoint.humidity;
+
+                let cellZone = row.insertCell();
+                cellZone.textContent = dataPoint.zone;
+            });
+        }
+
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Call the function to build the table when the page loads
+        window.onload = populateClimateTable;
+    </script>
+
+</body>
+</html>
